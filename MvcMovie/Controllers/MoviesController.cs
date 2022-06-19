@@ -85,6 +85,20 @@ namespace MvcMovie.Controllers
         // GET: Movies/Create
         public IActionResult Create()
         {
+            var mySelectList = new List<SelectListItem>();
+            var comedy = new SelectListItem("Comedy", "Comedy");
+            var action = new SelectListItem("Action", "Action");
+            var religious = new SelectListItem("Religious", "Religious");
+            var western = new SelectListItem("Western", "Western");
+            var horror = new SelectListItem("Horror", "Horror");
+
+            mySelectList.Add(comedy);
+            mySelectList.Add(action);
+            mySelectList.Add(religious);
+            mySelectList.Add(western);
+            mySelectList.Add(horror);
+
+            ViewData["Genres"] = new SelectList(mySelectList, "Value", "Text");
             return View();
         }
 
