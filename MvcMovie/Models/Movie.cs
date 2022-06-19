@@ -22,5 +22,7 @@ namespace MvcMovie.Models
 
         [RegularExpression(@"^[A-Z]+[a-zA-Z0-9""'\s-]*$"), StringLength(5), Required]
         public string? Rating { get; set; }
+
+
     }
 }

@@ -25,10 +25,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Movies[0].Title)
+                @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.TitleSortParm })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Movies[0].ReleaseDate)
+                @Html.ActionLink("Release Date", "Index", new { sortOrder = ViewBag.ReleaseDateSortParm })
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Movies[0].Genre)

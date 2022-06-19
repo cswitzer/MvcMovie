@@ -20,8 +20,11 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Movies
-        public async Task<IActionResult> Index(string movieGenre, string searchString)
+        public async Task<IActionResult> Index(string movieGenre, string searchString, string sortOrder)
         {
+            ViewBag.TitleSortParm = string.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
+            ViewBag.ReleaseDateSortParm = String.IsNullOrEmpty(sortOrder) ? "release_desc" : "";
+
             // reference a query which retrieves all movie genres from the database
             IQueryable<string> genreQuery = from m in _context.Movie
                                             orderby m.Genre
@@ -29,6 +32,16 @@ namespace MvcMovie.Controllers
 
             var movies = from m in _context.Movie
                          select m;
+           
+            switch (sortOrder)
+            {
+                case "title_desc":
+                    movies = movies.OrderByDescending(m => m.Title);
+                    break;
+                case "release_desc":
+                    movies = movies.OrderByDescending(m => m.ReleaseDate);
+                    break;
+            }
 
             if (!string.IsNullOrEmpty(searchString))
             {
